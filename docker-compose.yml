@@ -30,3 +30,12 @@ services:
         - "18081:18081"
       volumes:
         - /tmp/spark-events-local:/tmp/spark-events
+  datascience-notebook:
+      image: jupyter/pyspark-notebook
+      volumes:
+        - ./src/jupyter:/home/jovyan/work
+      ports:
+        - 8888:8888
+      command: "start-notebook.sh \
+        --NotebookApp.password=${ACCESS_TOKEN}"
+      
